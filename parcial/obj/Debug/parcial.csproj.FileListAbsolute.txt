@@ -1,0 +1,10 @@
+C:\Users\ramir\source\repos\parcial\parcial\obj\Debug\parcial.csproj.AssemblyReference.cache
+C:\Users\ramir\source\repos\parcial\parcial\obj\Debug\parcial.Form1.resources
+C:\Users\ramir\source\repos\parcial\parcial\obj\Debug\parcial.Properties.Resources.resources
+C:\Users\ramir\source\repos\parcial\parcial\obj\Debug\parcial.csproj.GenerateResource.cache
+C:\Users\ramir\source\repos\parcial\parcial\obj\Debug\parcial.csproj.CoreCompileInputs.cache
+C:\Users\ramir\source\repos\parcial\parcial\bin\Debug\parcial.exe.config
+C:\Users\ramir\source\repos\parcial\parcial\bin\Debug\parcial.exe
+C:\Users\ramir\source\repos\parcial\parcial\bin\Debug\parcial.pdb
+C:\Users\ramir\source\repos\parcial\parcial\obj\Debug\parcial.exe
+C:\Users\ramir\source\repos\parcial\parcial\obj\Debug\parcial.pdb
