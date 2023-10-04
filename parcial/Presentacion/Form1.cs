@@ -62,6 +62,17 @@ namespace parcial
             }
 
         }
+
+        private void limpiar()
+        {
+            cbMateriales.SelectedIndex = -1;
+            txtNombre.Text = String.Empty ;
+            nupCantidad.Value = 0;
+
+
+        }
+
+
         #endregion
 
         private void Form1_Load(object sender, EventArgs e)
@@ -72,6 +83,8 @@ namespace parcial
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+
+
             DetalleOrden detalleOrden = new DetalleOrden();
 
             detalleOrden.Cantidad = Convert.ToInt32(nupCantidad.Value);
@@ -86,23 +99,18 @@ namespace parcial
                 }
             }
             int codigo = Convert.ToInt32(cbMateriales.SelectedValue);
+
+            if (oOrden.buscarDetalle(codigo))
+            {
+                MessageBox.Show("ya existe ese producto en el detalle");
+                return;
+            }
+
             Material material = new Material (codigo, nombre, stock);
             detalleOrden.Material = material;         
-           
+          
             oOrden.AgregarDetalle(detalleOrden);
-
-
-
-
-
-            //DetalleOrden detalle = new DetalleOrden();
-            //string nombre = cbMateriales.Text;
-            //int stock = listMateriales[Convert.ToInt32(cbMateriales.SelectedValue)].Stock;
-            //int codigo = Convert.ToInt32(cbMateriales.SelectedValue);
-            //detalle.Material = new Material(codigo,nombre,stock);
-            //detalle.Cantidad = (int)nupCantidad.Value;
-    
-            //oOrden.AgregarDetalle(detalle);
+            limpiar();
             agregarDataGrid();
 
         }
@@ -115,7 +123,19 @@ namespace parcial
 
         private void dgvDetalleOrden_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvDetalleOrden.Columns[e.ColumnIndex].Name == "clAcciones")
+            {       
+                    int codigoMaterial = Convert.ToInt32(dgvDetalleOrden.Rows[e.RowIndex].Cells[0].Value);
+                    dgvDetalleOrden.Rows.RemoveAt(e.RowIndex);
+                    oOrden.QuitarDetalle(codigoMaterial);
+                    agregarDataGrid();
 
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

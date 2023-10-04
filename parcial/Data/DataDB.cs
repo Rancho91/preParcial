@@ -13,85 +13,7 @@ namespace parcial.Data {
 
     public class DataDB : IData
     {
-        //public DataTable Consultar(string sp)
-        // {
-        //   SqlConnection conn = Connection.ObtenerInstancia().ObtenerConexion();
-
-        //        SqlCommand cmd = new SqlCommand(sp, conn);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        DataTable dt = new DataTable();
-        //        try
-        //        {
-        //            conn.Open();
-        //            dt.Load(cmd.ExecuteReader());
-
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            MessageBox.Show(e.Message);
-        //        }
-        //        finally
-        //        {
-        //            conn.Close();
-        //        }
-        //        return dt;
-
-        //        throw new NotImplementedException();
-        //}
-
-
-
-        //    public int ConsultarEscalar()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //    public bool CrearOrden(Orden oOrden)
-        //    {
-        //        SqlConnection conn = Connection.ObtenerInstancia().ObtenerConexion();
-        //        conn.Open();
-        //        SqlTransaction t = conn.BeginTransaction();
-        //        try
-        //        {
-
-        //            SqlCommand cmd = new SqlCommand("sp_create_orden", conn);
-        //            cmd.Transaction = t;
-        //            cmd.Parameters.Clear();
-        //            SqlParameter parameter = new SqlParameter();
-        //            parameter.ParameterName = "@nro";
-        //            parameter.SqlDbType = SqlDbType.Int;
-        //            parameter.Direction = ParameterDirection.Output;
-        //            cmd.Parameters.Add(parameter);
-        //            cmd.Parameters.AddWithValue("@fecha", oOrden.Fecha.Date);
-        //            cmd.Parameters.AddWithValue("@responsable", oOrden.Responsable);
-        //            cmd.ExecuteNonQuery();
-        //            int nroOrden = (int)parameter.SqlValue;
-
-
-        //            foreach(DetalleOrden deto in oOrden.Detalles)
-        //            {
-        //                SqlCommand comand = new SqlCommand("sp_create_detalle", conn);
-        //                comand.Parameters.Clear();
-        //                comand.Transaction = t;
-        //                comand.Parameters.AddWithValue("@Cantidad",deto.Cantidad);
-        //                comand.Parameters.AddWithValue("@codigo", deto.Material.Codigo);
-        //                comand.Parameters.AddWithValue("@nroOrden", nroOrden);
-        //                comand.ExecuteNonQuery();
-        //            }
-        //            t.Commit();
-        //            return true;
-
-        //        }
-        //        catch(Exception ex) 
-        //        {
-        //            t.Rollback();
-        //            MessageBox.Show(ex.Message);
-        //            return false;
-        //        }
-        //        finally
-        //        {
-        //            conn.Close();
-        //        }
+   
         public DataTable Consultar(string sp)
         {
             SqlConnection cnn = Connection.ObtenerInstancia().ObtenerConexion();
@@ -118,13 +40,12 @@ namespace parcial.Data {
 
             try
             {
-                SqlCommand cmd = new SqlCommand("sp_create_orden", cnn);
+                SqlCommand cmd = new SqlCommand("SP_INSERTAR_ORDEN", cnn);
                   cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@responsable", oOrden.Responsable.ToString());
-                cmd.Parameters.AddWithValue("@fecha", oOrden.Fecha);
 
-                SqlParameter parametroNroOrden = new SqlParameter("@nroOrden", SqlDbType.Int);
+                SqlParameter parametroNroOrden = new SqlParameter("@nro", SqlDbType.Int);
                 parametroNroOrden.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(parametroNroOrden); 
                 cmd.Transaction = t;
@@ -132,19 +53,23 @@ namespace parcial.Data {
                 cmd.ExecuteNonQuery();
                 int nro = (int)parametroNroOrden.Value;
 
+                int nroDetalle = 1;
                 foreach(DetalleOrden detO in oOrden.Detalles)
                 {
-                    SqlCommand command = new SqlCommand("sp_create_detalle", cnn);
+                    SqlCommand command = new SqlCommand("SP_INSERTAR_DETALLES", cnn);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Transaction = t;
                     command.Parameters.AddWithValue("@codigo", detO.Material.Codigo);
-                    command.Parameters.AddWithValue("@nroorden", nro);
+                    command.Parameters.AddWithValue("@nro_orden", nro);
                     command.Parameters.AddWithValue("@cantidad", detO.Cantidad);
+                    command.Parameters.AddWithValue("@detalle", nroDetalle);
                     command.ExecuteNonQuery();
+                    nroDetalle++;
 
                 }
                 t.Commit();
                 flagg = true;
+                MessageBox.Show("se inserto todo de forma correcta");
             }
             catch (Exception e)
             {

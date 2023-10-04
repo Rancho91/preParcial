@@ -26,12 +26,12 @@ namespace parcial.entidades
             Detalles.Add(detalleOrden);
         }
 
-        public bool QuitarDetalle(DetalleOrden detalleOrden)
+        public bool QuitarDetalle(int detalleOrden)
         {
             bool flagg = false;
             for (int i = 0; i < Detalles.Count; i++)
             {
-                if (Detalles[i].Material.Codigo == detalleOrden.Material.Codigo)
+                if (Detalles[i].Material.Codigo == detalleOrden)
                 {
                     Detalles.RemoveAt(i);
                     flagg = true;
@@ -42,22 +42,21 @@ namespace parcial.entidades
             return flagg;
         }
 
+        public bool buscarDetalle(int detalleOrden)
+        {
+            bool flagg= false;
 
+            for (int i = 0; i < Detalles.Count; i++)
+            {
+                if (Detalles[i].Material.Codigo == detalleOrden)
+                {
+                    flagg = true;
+                    break;
 
-
-
-
-
-
-
-        //public int NroOrden { get; set; }
-        //public DateTime Fecha { get; set; }
-        //public string Responsable { get; set; }
-
-
-
-
-
+                }
+            }
+            return flagg;
+        }
 
     }
 }

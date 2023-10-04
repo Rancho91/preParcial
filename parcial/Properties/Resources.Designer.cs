@@ -61,7 +61,7 @@ namespace parcial.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Data Source=DESKTOP-1G25HFQ;Initial Catalog=practicaParcial2;Integrated Security=True.
+        ///   Busca una cadena traducida similar a Data Source=172.16.10.196;Initial Catalog=db_ordenes404958;User ID=alumno1w3;PASSWORD=alumno1w3.
         /// </summary>
         internal static string dbString {
             get {
