@@ -40,7 +40,7 @@ namespace parcial.Data {
 
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_INSERTAR_ORDEN", cnn);
+                SqlCommand cmd = new SqlCommand("SP_INSERTAR_ORDEN", cnn, t);
                   cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@responsable", oOrden.Responsable.ToString());
@@ -48,7 +48,6 @@ namespace parcial.Data {
                 SqlParameter parametroNroOrden = new SqlParameter("@nro", SqlDbType.Int);
                 parametroNroOrden.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(parametroNroOrden); 
-                cmd.Transaction = t;
 
                 cmd.ExecuteNonQuery();
                 int nro = (int)parametroNroOrden.Value;
@@ -56,9 +55,8 @@ namespace parcial.Data {
                 int nroDetalle = 1;
                 foreach(DetalleOrden detO in oOrden.Detalles)
                 {
-                    SqlCommand command = new SqlCommand("SP_INSERTAR_DETALLES", cnn);
+                    SqlCommand command = new SqlCommand("SP_INSERTAR_DETALLES", cnn, t);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Transaction = t;
                     command.Parameters.AddWithValue("@codigo", detO.Material.Codigo);
                     command.Parameters.AddWithValue("@nro_orden", nro);
                     command.Parameters.AddWithValue("@cantidad", detO.Cantidad);
@@ -79,8 +77,12 @@ namespace parcial.Data {
             }
             finally
             {
-                cnn.Close();
-                
+                if(cnn != null && cnn.State == ConnectionState.Open)
+                {
+                    cnn.Close();
+
+                }
+
 
             }
             return flagg;

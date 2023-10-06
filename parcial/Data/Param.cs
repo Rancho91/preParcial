@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace parcial.Data
 {
-    internal class Param
+    public class Param
     {
-        //public string Nombre { get; set; }
-        //public object value  { get; set; }
-        //public Param(string nombre, object valor)
-        //{
-        //    Nombre = nombre;
-        //    value = valor;
-        //}
+        public string Nombre { get; set; }
+        public object value { get; set; }
+        public Param(string nombre, object valor)
+        {
+            Nombre = nombre;
+            value = valor;
+        }
     }
 }

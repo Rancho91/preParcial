@@ -19,7 +19,7 @@ namespace parcial.Services
  
         private Connection()
         {
-            cnn = new SqlConnection(@"Data Source=172.16.10.196;Initial Catalog=db_ordenes404958;User ID=alumno1w3;PASSWORD=alumno1w3");
+            cnn = new SqlConnection(@"Data Source=DESKTOP-1G25HFQ;Initial Catalog=db_ordenes;Integrated Security=True");
         }
 
         public static Connection ObtenerInstancia()

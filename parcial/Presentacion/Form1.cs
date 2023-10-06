@@ -31,9 +31,9 @@ namespace parcial
         {
 
         }
+        //Funciones
 
         #region
-        //Funciones
 
         private void cargarCombo()
         {
@@ -84,7 +84,11 @@ namespace parcial
         private void btnAgregar_Click(object sender, EventArgs e)
         {
 
-
+            if(cbMateriales.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un material", "abiso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             DetalleOrden detalleOrden = new DetalleOrden();
 
             detalleOrden.Cantidad = Convert.ToInt32(nupCantidad.Value);
@@ -135,7 +139,13 @@ namespace parcial
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult resultado = MessageBox.Show("desa salir", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if(resultado == DialogResult.Yes)
+            {
+                this.Close();
+
+            }
         }
     }
 }

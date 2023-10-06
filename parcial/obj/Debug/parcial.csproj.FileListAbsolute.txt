@@ -19,3 +19,13 @@ C:\Users\AlumnoLocal\Source\Repos\preParcial\parcial\obj\Debug\parcial.csproj.Ge
 C:\Users\AlumnoLocal\Source\Repos\preParcial\parcial\obj\Debug\parcial.csproj.CoreCompileInputs.cache
 C:\Users\AlumnoLocal\Source\Repos\preParcial\parcial\obj\Debug\parcial.exe
 C:\Users\AlumnoLocal\Source\Repos\preParcial\parcial\obj\Debug\parcial.pdb
+C:\Users\ramir\source\repos\preParcial\parcial\bin\Debug\parcial.exe.config
+C:\Users\ramir\source\repos\preParcial\parcial\bin\Debug\parcial.exe
+C:\Users\ramir\source\repos\preParcial\parcial\bin\Debug\parcial.pdb
+C:\Users\ramir\source\repos\preParcial\parcial\obj\Debug\parcial.csproj.AssemblyReference.cache
+C:\Users\ramir\source\repos\preParcial\parcial\obj\Debug\parcial.Form1.resources
+C:\Users\ramir\source\repos\preParcial\parcial\obj\Debug\parcial.Properties.Resources.resources
+C:\Users\ramir\source\repos\preParcial\parcial\obj\Debug\parcial.csproj.GenerateResource.cache
+C:\Users\ramir\source\repos\preParcial\parcial\obj\Debug\parcial.csproj.CoreCompileInputs.cache
+C:\Users\ramir\source\repos\preParcial\parcial\obj\Debug\parcial.exe
+C:\Users\ramir\source\repos\preParcial\parcial\obj\Debug\parcial.pdb
